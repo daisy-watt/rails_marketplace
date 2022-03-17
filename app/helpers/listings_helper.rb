@@ -8,6 +8,6 @@ module ListingsHelper
     # taking out underscore and capitalizing first letter of word
 
     def format_price(price)
-        "$#{price/ 100}"
+        "$#{price/ 100.0}"
     end 
 end
