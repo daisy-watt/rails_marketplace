@@ -1,17 +1,23 @@
-<nav class="navbar navbar-light navbar-expand-md sticky-top">
+<nav class="navbar navbar-light navbar-expand-md">
     <div class="container-fluid">
-        <%=link_to "p2p", root_path, class: "navbar-brand"%>
+        <%=link_to "plate to plate", root_path, class: "text-success navbar-brand"%>
     </div>
 
     <ul class="navbar-nav mr-5-lg">
+        <li  class="nav-item">
+            <%=link_to "all food", listings_path, class: "nav-link"%>
+        </li>
         <%if user_signed_in?%>
-            <li  class="nav-item">
-                <%=link_to "Log Out", destroy_user_session_path, method: :delete, class: "nav-link"%>
-            </li>
+        <li  class="nav-item">
+            <%=link_to "list food", new_listing_path, class: "nav-link"%>
+        </li>
+        <li  class="nav-item">
+            <%=link_to "sign out", destroy_user_session_path, method: :delete, class: "nav-link"%>
+        </li>
         <%else%>
-            <li  class="nav-item">
-                <%=link_to "Log In", new_user_session_path, class: "nav-link"%>
-            </li>
+        <li  class="nav-item">
+            <%=link_to "sign In", new_user_session_path, class: "nav-link"%>
+        </li>
         <%end%>
 
     </ul>

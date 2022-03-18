@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  user: one
+  cooked_on: 2022-03-15 17:41:49
+  category: one
+  description: MyText
+  price: 1
+  sold: false
+
+two:
+  title: MyString
+  user: two
+  cooked_on: 2022-03-15 17:41:49
+  category: two
+  description: MyText
+  price: 1
+  sold: false

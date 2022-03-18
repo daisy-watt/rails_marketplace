@@ -1,3 +1,24 @@
 // Place all the styles related to the Pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.main-background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    width: 100%;
+    background-image: url(image-path("foodtubs.jpg"));
+    background-size: cover;
+}
+
+.map {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background-image: url(image-path("maps.jpg"));
+    background-size: cover;
+}
+
