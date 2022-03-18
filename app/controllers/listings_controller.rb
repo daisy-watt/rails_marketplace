@@ -1,6 +1,8 @@
 class ListingsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_listing, only: [:show, :edit, :update, :destroy]
+  #this before action below is what secures the listings
+  before_action :authorize_user, only: [:edit, :update, :destroy]
   before_action :set_form_vars, only: [:new, :edit]
 
   def index
@@ -40,6 +42,8 @@ class ListingsController < ApplicationController
   end 
 
   def destory
+    @listing.destroy
+    redirect_to listings_path, notice: "the food was deleted!"
 
   end
 
@@ -47,6 +51,13 @@ class ListingsController < ApplicationController
 
   def listing_params
     params.require(:listing).permit(:title, :price, :category_id, :description, :picture)
+  end
+
+  def authorize_user
+    if @listing.user_id != current_user.id
+      flash[:alert] = "Nuh ah! you arent allowed"
+      redirect_to listings_path
+    end
   end
 
   def set_listing
