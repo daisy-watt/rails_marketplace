@@ -12,16 +12,36 @@
         <h1 class="mb-sm-2 mb-md-5"><%=@listing.title%></h1>
         <h5 class="text-muted">Price: <%=format_price(@listing.price)%></h5>
         <p class="card-text text-secondary"><%=@listing.description%></p>
+
+        <%if current_user && @listing.sold == false %>
+        <button class="btn btn-success btn-sm btn-block mb-3 pr-2" data-stripe="payment">buy me <%=format_price(@listing.price)%></button>
+        <%elsif @listing.sold%>
+        <button class= "btn btn-secondary btn-sm btn-block mb-3 pr-2" disabled>SOLD</button>
+        <%else%>
+        <%=button_to "sign in to buy", new_user_session_path, class: "btn btn-outline-success"%>
+        <%end%>
             <div class="container">
                 <%if current_user && current_user.id == @listing.user_id%>
-                    <div class="d-flex justify-content-equally">
-                        
+                     <div class="d-flex justify-content-end">
                         <%= link_to "edit", edit_listing_path(@listing.id), class: "btn btn-outline-info btn-sm mr-2"%>
                         <%= link_to "delete", @listing, method: :delete, data: {confirm: "are you reeaaaly sure you want to delete this??"}, class: "btn btn-outline-warning btn-sm mr-2"%>
                     </div>
-                <%end%>
-                
+                 <%end%>      
             </div>
     </div>
 
 </section>
+
+<script src="https://js.stripe.com/v3/"></script>
+
+<script>
+document
+    .querySelector("[data-stripe='payment']")
+    .addEventListener("click", () => {
+        const stripe = Stripe("<%=Rails.application.credentials.dig(:stripe, :public_key)%>");
+        console.log(stripe);
+        stripe.redirectToCheckout({
+            sessionId: "<%=@session_id%>"
+        })
+    })
+</script>
