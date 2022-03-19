@@ -58,3 +58,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "devise", "~> 4.8"
 
 gem "aws-sdk-s3", "~> 1.113"
+
+gem "stripe", "~> 5.45"
+
+gem "ultrahook", "~> 1.0"
