@@ -1,2 +1,2 @@
-<h2>you bought <%=@listing.title%>!</h2>
-<p>Find me in app/views/payments/success.html.erb</p>
+<p> thank you so much for supporting your community and buying <%=@order.listing.title%> </p>
+<%=link_to "view your receipt", @order.receipt_url%>
