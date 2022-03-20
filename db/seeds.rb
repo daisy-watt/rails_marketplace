@@ -14,3 +14,12 @@ if Category.count == 0
         puts "created #{c} category"
     end
 end
+
+dietry_choices = ["Vegan", "Vegetarian", "Dairy Free", "Egg Free", "Nut Free", "Gluten Free"]
+
+if Dietry.count == 0
+    dietry_choices.each do |d|
+        Dietry.create(name: d)
+        puts "created #{d} dietry choice"
+    end
+end 

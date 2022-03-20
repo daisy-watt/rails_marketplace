@@ -5,6 +5,7 @@ class ListingsController < ApplicationController
   before_action :authorize_user, only: [:edit, :update, :destroy]
   before_action :set_form_vars, only: [:new, :edit]
 
+    #adding in eager load here creeates bugs elsewhere...
   def index
     @listings = Listing.all
   end
@@ -50,7 +51,7 @@ class ListingsController < ApplicationController
   private
 
   def listing_params
-    params.require(:listing).permit(:title, :price, :category_id, :description, :picture)
+    params.require(:listing).permit(:title, :price, :category_id, :description, :picture, dietry_ids: [])
   end
 
   def authorize_user
@@ -66,6 +67,7 @@ class ListingsController < ApplicationController
 
   def set_form_vars
     @categories = Category.all
+    @dietries = Dietry.all
   end
 
 end
