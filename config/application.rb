@@ -20,3 +20,11 @@ module Marketplace
     # config.eager_load_paths << Rails.root.join("extras")
   end
 end
+# adding in ability for heroku to access the other webhook/stripe credentials for deploying
+module Marketplace
+  class Application < Rails::Application
+    if ENV["PIPE_ENV"].present?
+      Rails.application.config.credentials.content_path = Rails.root.join("config/credentials/#{ENV["PIP_ENV"]}.yml.enc")
+    end 
+  end
+end

@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  listing: one
+  buyer: one
+  seller: one
+  payment_id: MyString
+  receipt_url: MyString
+
+two:
+  listing: two
+  buyer: two
+  seller: two
+  payment_id: MyString
+  receipt_url: MyString
