@@ -1,4 +1,19 @@
 <%=form_with model: @listing, local: true do |f|%>
+    <%if @listing.errors.any?%>
+        <div class="alert alert-error alert-dismissable fade show">
+            <h4><%=pluralize(@listing.errors.count, "error")%> stopped you from adding your food! </h4>
+            <ul>
+                <%@listing.errors.full_messages.each do |message|%>
+                    <li><%=message%></li>
+                <%end%>
+            </ul>
+        <button type="button" class="close" data-dismiss="alert" aria-label="close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div> 
+    <%end%>
+
+
     <div class="container">
         <div class="form-group mb-3">
             <%=f.label :title, class: "form-label"%>
@@ -7,12 +22,20 @@
 
         <div class="form-group mb-3">
             <%=f.label :price, class: "form-label"%>
-            <%=f.number_field :price%>
+            <%=f.number_field :price, step:"0.01"%>
         </div>
 
         <div class="form-group mb-3">
             <%=f.label :category_id, class: "form-label"%>
             <%=f.select :category_id, @categories.map {|c| [c.name, c.id]}, class: "form-select"%>
+        </div>
+
+        <h6 class="mb-3 ml-2">dietry info:</h6>
+        <div class="form-check form-check-line mb-3 ml-2">
+            <%=f.collection_check_boxes :dietry_ids, @dietries, :id, :name do |b|%>
+                <%=b.label class: "form-check-label"%>
+                <%=b.check_box class: "form-check-line mr-2"%>
+            <%end%>    
         </div>
 
         <div class="form-group mb-3">
