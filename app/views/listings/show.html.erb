@@ -10,16 +10,14 @@
     </div>
     <div class="sidebar col-lg-4 p-0 mx-2 d-md-block">
         <h2 class="mb-sm-2 mb-md-5"><%=@listing.title%></h2>
-
-        <%@listing.dietries.each do |dietry|%>
-            <span class="badge badge-pill badge-success"><%=dietry.name%></span>
-        <%end%>
+        <p class="card-text text-secondary"><%=@listing.description%></p>
 
         <h6 class="text-muted mb-3">Category: <%=@listing.category.name%></h6>
 
         <h6 class="text-muted">Price: <%=format_price(@listing.price)%></h6>
-
-        <p class="card-text text-secondary"><%=@listing.description%></p>
+        <%@listing.dietries.each do |dietry|%>
+            <span class="badge badge-pill badge-success mb-3"><%=dietry.name%></span>
+        <%end%>
 
         <%if current_user && @listing.sold == false %>
             <%=button_to "buy me #{format_price(@listing.price)}", 
