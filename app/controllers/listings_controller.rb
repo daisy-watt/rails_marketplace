@@ -7,7 +7,7 @@ class ListingsController < ApplicationController
 
     #adding in eager load here creeates bugs elsewhere...
   def index
-    @listings = Listing.all.eager_load(@listing)
+    @listings = Listing.all
   end
 
   def show
